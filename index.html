@@ -1,0 +1,51 @@
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+</head>
+<div id="contactUsTopic" class="frmRow select">
+    <label for="ctl00_Content_ctl00_ddlTopic" id="ctl00_Content_ctl00_lblTopic">Select a topic</label>
+    <div class="container">
+        <select id="ctl00_Content_ctl00_ddlTopic" name="topic" class="frmSelect frmSelectJS" style="display: block;" autocomplete="off">
+								<option value="">--Select--</option>
+								
+							</select>
+        <input id="topicText" name="topicText" type="hidden" value="">
+    </div>
+</div>
+<div id="ctl00_Content_ctl00_Div4" class="frmRow contactTextarea">
+    <label for="ctl00_Content_ctl00_txtQuestion" id="ctl00_Content_ctl00_lblQuestion">Enter or amend your question</label>
+    <textarea id="ctl00_Content_ctl00_txtQuestion" name="question" class="maxLength" rows="2" cols="20"></textarea>
+</div>
+
+
+<script>
+    var $ = window.jQuery;
+    var x = function() {
+        var intvl = setInterval(function() {
+            if ($('#ctl00_Content_ctl00_txtQuestion').length) {
+                clearInterval(intvl);
+                $('#ctl00_Content_ctl00_txtQuestion').one('click', function(
+                    e
+                ) {
+                    $('#ctl00_Content_ctl00_txtQuestion').attr({
+                        maxLength: 1300,
+                    });
+                    $('#ctl00_Content_ctl00_lblQuestion')
+                        .append(
+                            '<br><p><span id="chars">1300</span> characters remaining</p>'
+                        )
+                        .attr({
+                            maxLength: 1300
+                        });
+                    var maxLength = 1300;
+                    $('textarea').keyup(function() {
+                        var length = $(this).val().length;
+                        var length = maxLength - length;
+                        $('#chars').text(length);
+                    });
+                });
+            }
+        });
+    };
+    $('#ctl00_Content_ctl00_txtQuestion').append(x);
+</script>
